@@ -36,10 +36,6 @@ Load< Scene > hexapod_scene(LoadTagDefault, []() -> Scene const * {
 	});
 });
 
-Load< Sound::Sample > dusty_floor_sample(LoadTagDefault, []() -> Sound::Sample const * {
-	return new Sound::Sample(data_path("dusty-floor.opus"));
-});
-
 Load< Sound::Sample > project_whatev(LoadTagDefault, []() -> Sound::Sample const * {
 	return new Sound::Sample(data_path("Project-whatev.wav"));
 });
@@ -50,10 +46,6 @@ Load< Sound::Sample > wrong_ball(LoadTagDefault, []() -> Sound::Sample const * {
 
 Load< Sound::Sample > there_you_go(LoadTagDefault, []() -> Sound::Sample const * {
 	return new Sound::Sample(data_path("there_you_go.wav"));
-});
-
-Load< Sound::Sample > success(LoadTagDefault, []() -> Sound::Sample const * {
-	return new Sound::Sample(data_path("success.wav"));
 });
 
 PlayMode::PlayMode() : scene(*hexapod_scene) {
