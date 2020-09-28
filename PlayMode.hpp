@@ -23,24 +23,39 @@ struct PlayMode : Mode {
 	struct Button {
 		uint8_t downs = 0;
 		uint8_t pressed = 0;
-	} left, right, down, up;
+	} front, down, up;
 
 	//local copy of the game scene (so code can change it during gameplay):
 	Scene scene;
 
 	//hexapod leg to wobble:
-	Scene::Transform *hip = nullptr;
-	Scene::Transform *upper_leg = nullptr;
-	Scene::Transform *lower_leg = nullptr;
-	glm::quat hip_base_rotation;
-	glm::quat upper_leg_base_rotation;
-	glm::quat lower_leg_base_rotation;
-	float wobble = 0.0f;
-
-	glm::vec3 get_leg_tip_position();
+	Scene::Transform *cube = nullptr;
+	Scene::Transform *knot = nullptr;
+	std::vector<Scene::Transform*> collectibles;
+	std::vector<int> play_which;
+	std::vector<float> shrink;
+	glm::quat cube_base_rotation;
+	glm::quat knot_base_rotation;
+	glm::quat camera_base_rotation;
+	glm::vec3 cube_base_position;
+	glm::vec3 knot_base_position;
+	glm::vec3 camera_base_position;
+	glm::vec3 collectible_base_scale;
+	float swing = 0.0f;
+	bool balloon_blown_up = false;
+	bool reset = false;
+	bool listening = false;
+	bool pinching = false;
+	bool collecting = false;
+	bool won = false;
+	int points = 0;
+	// Thanks for the suggestions in the feedback for game2 Jim!!!!!
+	float camera_rotation_angle = 0.0f;
+	float angle = 0.0f;
+	glm::vec3 camera_rel_cube;
 
 	//music coming from the tip of the leg (as a demonstration):
-	std::shared_ptr< Sound::PlayingSample > leg_tip_loop;
+	std::shared_ptr< Sound::PlayingSample > bgm;
 	
 	//camera:
 	Scene::Camera *camera = nullptr;
